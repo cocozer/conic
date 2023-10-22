@@ -6,9 +6,9 @@
 #include "Geogebra_conics.hpp"
 
 
-
+//test git
 int main()
-{
+{ 
   // the viewer will open a file whose path is writen in hard (bad!!). 
   // So you should either launch your program from the fine directory or change the path to this file.
   Viewer_conic viewer;
