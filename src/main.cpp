@@ -6,7 +6,7 @@
 #include "Geogebra_conics.hpp"
 
 
-//test git
+//test git oui
 int main()
 { 
   // the viewer will open a file whose path is writen in hard (bad!!). 
