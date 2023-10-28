@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 
@@ -5,10 +6,13 @@
 
 #include "Geogebra_conics.hpp"
 
+#include "Line2P.hpp"
+#include "Point2P.hpp"
+
 
 //test git oui
 int main()
-{ 
+{
   // the viewer will open a file whose path is writen in hard (bad!!). 
   // So you should either launch your program from the fine directory or change the path to this file.
   Viewer_conic viewer;
@@ -42,6 +46,11 @@ int main()
   viewer.display(); // on terminal
   viewer.render("output.html");  // generate the output file (to open with your web browser)
 
+  Point2P myPoint = Point2P(1.0, 2.0, 1.0);
+  myPoint.display();
+
+  Line2P myLine = Line2P(6.0, 7.0, 8.0);
+  myLine.display();
   return 0;
 }
 
