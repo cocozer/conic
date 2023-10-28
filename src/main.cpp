@@ -11,6 +11,7 @@
 
 
 //test git oui
+// cc corentin je sais que tu as plagié ton court métrage sur un court métrage existant car je l'ai étudié en cours de théatre je vais faire du chantage maintenant si tu fais pas les conics tt seul je te dénonce au prof et tu aura zero/20 en théatre bisou
 int main()
 {
   // the viewer will open a file whose path is writen in hard (bad!!). 
