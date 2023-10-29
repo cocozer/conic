@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <vector>
 
@@ -8,10 +7,9 @@
 
 #include "Line2P.hpp"
 #include "Point2P.hpp"
+#include "Conic.hpp"
 
 
-//test git oui
-// cc corentin je sais que tu as plagié ton court métrage sur un court métrage existant car je l'ai étudié en cours de théatre je vais faire du chantage maintenant si tu fais pas les conics tt seul je te dénonce au prof et tu aura zero/20 en théatre bisou
 int main()
 {
   // the viewer will open a file whose path is writen in hard (bad!!). 
@@ -52,6 +50,9 @@ int main()
 
   Line2P myLine = Line2P(6.0, 7.0, 8.0);
   myLine.display();
+
+  Conic myConic = Conic(6.0, 7.0, 8.0, 1.0, 2.0, 3.0);
+  myConic.display();
   return 0;
 }
 
