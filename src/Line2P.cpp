@@ -17,6 +17,7 @@ Line2P::Line2P(const Line2P &line)
 {}
 
 void Line2P::display() const {
+    std::cout << "Informations de la droite :" << std::endl;
 	std::cout << "a = " << get_a() << std::endl;
     std::cout << "b = " << get_b() << std::endl;
     std::cout << "c = " << get_c() << std::endl;

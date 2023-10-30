@@ -21,6 +21,7 @@ Point2P::Point2P(const Point2P &point)
 {}
 
 void Point2P::display() const {
+    std::cout << "Informations du point :" << std::endl;
 	std::cout << "x = " << get_x() << std::endl;
     std::cout << "y = " << get_y() << std::endl;
     std::cout << "w = " << get_w() << std::endl;
