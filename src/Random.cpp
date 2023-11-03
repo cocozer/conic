@@ -1,6 +1,6 @@
 #include "Random.hpp"
 
-namespace random { 
+namespace randgen { 
 
     int increment = 0; // L'incrément en variable globale permet de générer des nombres aléatoires et différents même si le programme s'execute en un instant
 
