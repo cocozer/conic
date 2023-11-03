@@ -1,7 +1,9 @@
 #include "Random.hpp"
 
 namespace random { 
+
     int increment = 0; // L'incrément en variable globale permet de générer des nombres aléatoires et différents même si le programme s'execute en un instant
+
     double intGenerator(int min, int max){
         increment++; // A chaque génération aléatoire, l'incrément augmente
         // Selection de la graine avec le temps à l'instant présent + l'incrément
@@ -14,9 +16,11 @@ namespace random {
         return distribution(generator);
     }
 
+
     Point2P point2PGenerator(){
         return Point2P(intGenerator(1, 100), intGenerator(1, 100), intGenerator(1, 100)); // Appel du constructeur de Point2P à partir de 3 points aléatoires
     }
+
 
     std::vector<Point2P> pointsVectorGenerator(int nbPoints) {
         std::vector<Point2P> points;

@@ -7,7 +7,7 @@
 
 
 namespace random { 
-    double intGenerator(int min, int max);
-    Point2P point2PGenerator();
-    std::vector<Point2P> pointsVectorGenerator(int nbPoints);
+    double intGenerator(int min, int max); // Génération aléatoire d'un entier
+    Point2P point2PGenerator(); // Génération aléatoire d'un point dans la géométrie projective
+    std::vector<Point2P> pointsVectorGenerator(int nbPoints);  // Génération aléatoire de n points rangés dans un vecteur
 }
