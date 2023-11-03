@@ -18,7 +18,11 @@ namespace randgen {
 
 
     Point2P point2PGenerator(){
-        return Point2P(intGenerator(-10, 10), intGenerator(-6, 6), 1); // Appel du constructeur de Point2P à partir de 3 points aléatoires
+        return Point2P(intGenerator(-10, 10), intGenerator(-6, 6), 1); // Appel du constructeur de Point2P à partir de 2 coordonnées aléatoires et 1 
+    }
+
+    Point2P idealPoint2PGenerator(){
+        return Point2P(intGenerator(-10, 10), intGenerator(-6, 6), 0); // Appel du constructeur de Point2P à partir de 2 coordonnées aléatoires et 0 (infini)
     }
 
 
