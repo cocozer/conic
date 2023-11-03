@@ -23,23 +23,33 @@ int main()
   viewer.show_value(false);
   viewer.show_label(true);
 
-  // draw points
-  Eigen::VectorXd pt1(2), pt2(2), pt3(2);
-  pt1 <<  1.5,  2.0;
-  pt2 <<  3.0,  1.0;
-  pt3 << -2.0, -1.0;
+
+  // création de la conique
+  std::vector<Point2P> points = randgen::pointsVectorGenerator(5); // Génération de 5 points aléatoires
+  Conic myConic = Conic(points[0], points[1], points[2], points[3], points[4]); // Appel du constructeur de conique avec les 5 points aléatoires
+
+  // dessin des points
+  Eigen::VectorXd pt1(2), pt2(2), pt3(2), pt4(2), pt5(2);
+  pt1 <<  points[0].get_x(),  points[0].get_y();
+  pt2 <<  points[1].get_x(),  points[1].get_y();
+  pt3 <<  points[2].get_x(),  points[2].get_y();
+  pt4 <<  points[3].get_x(),  points[3].get_y();
+  pt5 <<  points[4].get_x(),  points[4].get_y();
 
   viewer.push_point(pt1, "p1", 200,0,0);
   viewer.push_point(pt2, "p2", 200,0,0);
-  viewer.push_point(pt3, 200,0,0);
+  viewer.push_point(pt3, "p3", 200,0,0);
+  viewer.push_point(pt4, "p4", 200,0,0);
+  viewer.push_point(pt5, "p5", 200,0,0);
+  
+
+  // dessin de la conique
+  Eigen::VectorXd conic(6);
+  conic << myConic.get_a(), myConic.get_b(), myConic.get_c(), myConic.get_d(), myConic.get_e(), myConic.get_f();
+  viewer.push_conic(conic, 0,0,200);
 
   // draw line
   viewer.push_line(pt1, pt2-pt1,  200,200,0);
-
-  // draw conic
-  Eigen::VectorXd conic(6);
-  conic << -1.4, -0.3, -1, -0.6, 0.0, 0.8;
-  viewer.push_conic(conic, 0,0,200);
 
   // render
   viewer.display(); // on terminal
@@ -51,13 +61,10 @@ int main()
   Line2P myLine = Line2P(6.0, 7.0, 8.0);
   myLine.display();
 
-  Conic myConic = Conic(6.0, 7.0, 8.0, 1.0, 2.0, 3.0);
-  myConic.display();
+  // Création et dessin d'une conique à partir de 5 points aléatoires
 
-  std::vector<Point2P> points = randgen::pointsVectorGenerator(5); // Génération de 5 points aléatoires
-  Conic mySecConic = Conic(points[0], points[1], points[2], points[3], points[4]);
 
-  mySecConic.display();
+
   return 0;
 }
 
