@@ -1,6 +1,11 @@
 #pragma once
 #include <iostream>
+#include <vector>
+
+#include <Eigen/Dense>
+
 #include "Point2P.hpp"
+
 
 class Conic
 {

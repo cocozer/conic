@@ -55,7 +55,9 @@ int main()
   myConic.display();
 
   std::vector<Point2P> points = randgen::pointsVectorGenerator(5); // Génération de 5 points aléatoires
+  Conic mySecConic = Conic(points[0], points[1], points[2], points[3], points[4]);
 
+  mySecConic.display();
   return 0;
 }
 

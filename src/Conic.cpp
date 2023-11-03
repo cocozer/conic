@@ -9,29 +9,31 @@ Conic::Conic(const double a, const double b, const double c, const double d, con
 
 Conic::Conic(const Point2P x1, const Point2P x2, const Point2P x3, const Point2P x4, const Point2P x5) 
 {
-    // Ajouter code de constructeur de conique à partir de 5 points -----------------------------------------------------------------------------
+    std::vector<Point2P> points = {x1, x2, x3, x4, x5}; // Création d'un vecteur de 5 points
 
-    /*
-    alors de ce que j'ai compris deja on crée la matrice relative au systeme (page 2 énoncé) avec w=1, puis on calcule son noyeau
+    Eigen::MatrixXd A(5,6); // Initialisation de la matrice du système
+    A.col(5).setOnes();         // Remplit la dernière colonne de 1
 
-    Eigen::MatrixXd A(5,6);
-    A.leftCols(5).setZero();    //initialise les 5 premières colonnes à zéro
-    A.col(5).setOnes();         //remplit la dernière colonne de 1
-
-    A(0,0) = pow(x1.x,2)
-    A(0,1) = x1.x*x1.y
-    A(0,2) = pow(x1.y,2)
-    A(0,3) = x1.x
-    A(0,4) = x1.y   //... faire pareil pour les 4 autres points
-    
-    pour calculer noyau jsp on fait comment mais ya ca dans l'énoncé :
-    Eigen :: JacobiSVD < Eigen :: MatrixXd > svd (A ,
-                            Eigen :: ComputeThinU | Eigen :: ComputeFullV );
-    Eigen :: VectorXd x = svd . matrixV (). rightCols (1);
+    // Boucle pour remplir toutes les lignes de la matrice A à partir du vecteur des 5 points
+    for(size_t i = 0; i<5; i++) {
+        A(i,0) = pow(points[i].get_x(),2);
+        A(i,1) = points[i].get_x() * points[i].get_y();
+        A(i,2) = pow(points[i].get_y(), 2);
+        A(i,3) = points[i].get_x();
+        A(i,4) = points[i].get_y();
+    }
     
     
+    // Calcul du noyau de A avec Eigen :
+    Eigen::JacobiSVD < Eigen :: MatrixXd > svd (A , Eigen :: ComputeThinU | Eigen :: ComputeFullV );
+    Eigen::VectorXd x = svd.matrixV().rightCols(1); // Vecteur x qui contient les paramètres a, b, c, d, e et f de la conique
     
-    */
+    set_a(x(0));
+    set_b(x(1));
+    set_c(x(2));
+    set_d(x(3));
+    set_e(x(4));
+    set_f(x(5));
 }
 
 Conic::Conic(const Conic &conic) 
@@ -39,6 +41,7 @@ Conic::Conic(const Conic &conic)
 {}
 
 void Conic::display() const {
+    std::cout << "Informations de la conique :" << std::endl;
 	std::cout << "a = " << get_a() << std::endl;
     std::cout << "b = " << get_b() << std::endl;
     std::cout << "c = " << get_c() << std::endl;
