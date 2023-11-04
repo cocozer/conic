@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <Eigen/Dense>
+
 #include "Line2P.hpp"
 
 class Line2P; // Déclaration avancée de la classe Line2P pour pouvoir créer des points à partir d'intersection de droites

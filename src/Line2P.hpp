@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <Eigen/Dense>
+
 #include "Point2P.hpp"
 
 class Point2P; // Déclaration avancée de la classe Point2P pour pouvoir créer des droites à partir de deux points
