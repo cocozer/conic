@@ -21,7 +21,36 @@ class Conic
     // Constructeurs et Destructeur
     Conic(const double a, const double b, const double c, const double d, const double e, const double f); // Constructeur d'une Conique
 
-    Conic(const Point2P x1, const Point2P x2, const Point2P x3, const Point2P x4, const Point2P x5); // Constructeur d'une Conique à partir de 5 points
+    // Conic(const Point2P x1, const Point2P x2, const Point2P x3, const Point2P x4, const Point2P x5); // Constructeur variadics d'une Conique à partir de 5 points ou +
+    template <typename... Points>
+    Conic(Points... points) {
+    static_assert(sizeof...(points) >= 5, "Au moins 5 points doivent être fournis.");
+
+    std::vector<Point2P> pointVector = {points...}; // Crée un vecteur à partir des points fournis
+
+    Eigen::MatrixXd A(sizeof...(points), 6); // Matrice du système
+    A.col(5).setOnes(); // Remplit la dernière colonne de 1
+
+    size_t i = 0;
+    for (const auto& point : pointVector) {
+        A(i, 0) = point.get_x() * point.get_x();
+        A(i, 1) = point.get_x() * point.get_y();
+        A(i, 2) = point.get_y() * point.get_y();
+        A(i, 3) = point.get_x();
+        A(i, 4) = point.get_y();
+        i++;
+    }
+
+    Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeThinU | Eigen::ComputeFullV);
+    Eigen::VectorXd x = svd.matrixV().rightCols(1);
+
+    set_a(x(0));
+    set_b(x(1));
+    set_c(x(2));
+    set_d(x(3));
+    set_e(x(4));
+    set_f(x(5));
+}
 
     Conic(const Conic &c); // Constructeur par copie
 
