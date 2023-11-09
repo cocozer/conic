@@ -43,5 +43,6 @@ class Conic
 
     // Méthodes
     void display() const; // Affiche les informations de la conique
+    Eigen::MatrixXd matrix() const; // Renvoi une matrice de la conique
     
 };

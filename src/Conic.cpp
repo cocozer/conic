@@ -49,3 +49,18 @@ void Conic::display() const {
     std::cout << "e = " << get_e() << std::endl;
     std::cout << "f = " << get_f() << std::endl;
 }
+
+Eigen::MatrixXd Conic::matrix() const {
+    Eigen::MatrixXd C(3,3); // Initialisation d'une matrice 3 3 puis entrée des valeurs dans la matrice
+    C(0,0) = get_a();
+    C(0,1) = get_b()/2;
+    C(0,2) = get_d()/2;
+    C(1,0) = get_b()/2;
+    C(1,1) = get_c();
+    C(1,2) = get_e()/2;
+    C(2,0) = get_d()/2;
+    C(2,1) = get_e()/2;
+    C(2,2) = get_f();
+
+    return C; // Renvoi de la matrice de la conique
+}
