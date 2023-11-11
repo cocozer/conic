@@ -1,34 +1,50 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.13)
 
 
 # give a name to the project
-project(conic LANGUAGES C CXX)
+project(conicProject)
 
-# include Eigen
-find_package(Eigen3)
-if(${EIGEN3_FOUND})
-    message(STATUS "lib EIGEN3 found")
-    message(STATUS "  version " ${EIGEN3_VERSION_STRING})
-    message(STATUS "  include " ${EIGEN3_INCLUDE_DIR})
-else()
-    set(EIGEN3_INCLUDE_DIR "C:/eigen3") # put your path instead of "C:/eigen/eigen-3.4.0"
-    message(STATUS "  include " ${EIGEN3_INCLUDE_DIR})
-    #message(FATAL_ERROR "lib EIGEN3 not found")
-endif()
+# display VERBOSE messages : cmake --log-level=VERBOSE ..
+
+# specify the system
+message(VERBOSE "CMAKE_VERSION           : " ${CMAKE_VERSION})
+message(VERBOSE "CMAKE_SYSTEM_NAME       : " ${CMAKE_SYSTEM_NAME})
+message(VERBOSE "CMAKE_SYSTEM            : " ${CMAKE_SYSTEM})
+message(VERBOSE "CMAKE_SYSTEM_PROCESSOR  : " ${CMAKE_SYSTEM_PROCESSOR} "\n")
+
+# specify the directories
+message(VERBOSE "CMAKE_BINARY_DIR        : " ${CMAKE_BINARY_DIR})
+message(VERBOSE "CMAKE_SOURCE_DIR        : " ${CMAKE_SOURCE_DIR})
+message(VERBOSE "CMAKE_HOME_DIRECTORY    : " ${CMAKE_HOME_DIRECTORY})
+message(VERBOSE "PROJECT_BINARY_DIR      : " ${PROJECT_BINARY_DIR})
+message(VERBOSE "PROJECT_SOURCE_DIR      : " ${PROJECT_SOURCE_DIR} "\n")
+
+# compile flags
+message(VERBOSE "CMAKE_CXX_FLAGS         : " ${CMAKE_CXX_FLAG})
+message(VERBOSE "CMAKE_CXX_FLAGS_DEBUG   : " ${CMAKE_CXX_FLAGS_DEBUG})
+message(VERBOSE "CMAKE_CXX_FLAGS_RELEASE : " ${CMAKE_CXX_FLAGS_RELEASE})
+message(VERBOSE "CMAKE_CXX_COMPILER      : " ${CMAKE_CXX_COMPILER} "\n")
 
 
-# files to compile
-add_executable(conic src/main.cpp src/Geogebra_conics.cpp src/Geogebra_conics.hpp src/Entry.cpp src/Entry.hpp src/Directory.cpp src/Directory.hpp src/Point2P.cpp src/Point2P.hpp src/Line2P.cpp src/Line2P.hpp src/Conic.cpp src/Conic.hpp src/Random.cpp src/Random.hpp)
+# not clear to me, but vscode can't work fine without
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# compilation options
-target_compile_features(conic PRIVATE cxx_std_11) # use at least c++ 11
-if (MSVC)
-    target_compile_options(conic PRIVATE /W3)
-else()
-    target_compile_options(conic PRIVATE -Wall -Wextra -Wpedantic -pedantic-errors)
-endif()
+# Prevents compiler-specific extensions to C++ because they might allow code to compile on your machine but not on other people's machine
+#set_target_properties(${PROJECT_NAME} PROPERTIES CXX_EXTENSIONS OFF)
 
-# lib include path
-target_include_directories(conic PRIVATE "${EIGEN3_INCLUDE_DIR}")
+
+
+# (optaional) put the binary files in this directory
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/output)
+
+# add conicLib
+message(STATUS "conicLib cmake part ..." )
+add_subdirectory(conicLib INTERFACE)
+include_directories(${CMAKE_SOURCE_DIR}/conicLib/include) # important : other projects called by this cmake will know this include directory
+
+# add main
+message(STATUS "main cmake part ..." )
+add_subdirectory(main)
+
 
 
