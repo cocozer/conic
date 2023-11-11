@@ -1,13 +1,15 @@
 #include <iostream>
 
 
-#include "Line2P.hpp"
+#include "Line2D.hpp"
 
-Line2P::Line2P(const double a, const double b, const double c)
+namespace geomproj { 
+
+Line2D::Line2D(const double a, const double b, const double c)
 : m_a(a), m_b(b), m_c(c)
 {}
 
-Line2P::Line2P(const Point2P x1, const Point2P x2) 
+Line2D::Line2D(const Point2D x1, const Point2D x2) 
 {
     Eigen::Vector3d p1; // Création du vecteur de p1
     p1 << x1.get_x(), x1.get_y(), x1.get_w(); // Assignation de x y et w
@@ -22,13 +24,14 @@ Line2P::Line2P(const Point2P x1, const Point2P x2)
     set_c(prodVec(2));
 }
 
-Line2P::Line2P(const Line2P &line) 
+Line2D::Line2D(const Line2D &line) 
 : m_a(line.m_a), m_b(line.m_b), m_c(line.m_c)
 {}
 
-void Line2P::display() const {
+void Line2D::display() const {
     std::cout << "Informations de la droite :" << std::endl;
 	std::cout << "a = " << get_a() << std::endl;
     std::cout << "b = " << get_b() << std::endl;
     std::cout << "c = " << get_c() << std::endl;
+}
 }

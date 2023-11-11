@@ -5,8 +5,8 @@
 
 #include "Geogebra_conics.hpp"
 
-#include "Line2P.hpp"
-#include "Point2P.hpp"
+#include "Line2D.hpp"
+#include "Point2D.hpp"
 #include "Conic.hpp"
 #include "Random.hpp"
 
@@ -25,12 +25,12 @@ int main()
 
 
   // création de la conique
-  std::vector<Point2P> points = randgen::pointsVectorGenerator(6); // Génération de 5 points aléatoires
-  Conic myConic = Conic(points[0], points[1], points[2], points[3], points[4]); // Appel du constructeur de conique avec les 5 points aléatoires
-  Conic myConicFrom6Points = Conic(points[0], points[1], points[2], points[3], points[4], points[5]); // Appel du constructeur de conique avec les 5 points aléatoires
+  std::vector<geomproj::Point2D> points = randgen::pointsVectorGenerator(6); // Génération de 5 points aléatoires
+  conic::Conic myConic = conic::Conic(points[0], points[1], points[2], points[3], points[4]); // Appel du constructeur de conique avec les 5 points aléatoires
+  conic::Conic myConicFrom6Points = conic::Conic(points[0], points[1], points[2], points[3], points[4], points[5]); // Appel du constructeur de conique avec les 5 points aléatoires
 
   // génération d'un point à l'infini
-  Point2P idealPoint = randgen::idealPoint2PGenerator();
+  geomproj::Point2D idealPoint = randgen::idealPoint2DGenerator();
   // dessin des points
   Eigen::VectorXd pt1(2), pt2(2), pt3(2), pt4(2), pt5(2), pt6(2), infpt(2);
   pt1 <<  points[0].get_x(),  points[0].get_y();
@@ -61,7 +61,7 @@ int main()
   viewer.push_conic(conic2, 0,200,200);
 
   // Conique avec un point à l'infini
-  Conic myConicFromInf = Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
+  conic::Conic myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
 
   // dessin de la conique en vertavec un point à l'infini
   Eigen::VectorXd conic3(6);

@@ -4,9 +4,9 @@
 
 #include <Eigen/Dense>
 
-#include "Point2P.hpp"
+#include "Point2D.hpp"
 
-
+namespace conic {
 class Conic
 {
     private :
@@ -21,12 +21,12 @@ class Conic
     // Constructeurs et Destructeur
     Conic(const double a, const double b, const double c, const double d, const double e, const double f); // Constructeur d'une Conique
 
-    // Conic(const Point2P x1, const Point2P x2, const Point2P x3, const Point2P x4, const Point2P x5); // Constructeur variadics d'une Conique à partir de 5 points ou +
+    // Conic(const Point2D x1, const Point2D x2, const Point2D x3, const Point2D x4, const Point2D x5); // Constructeur variadics d'une Conique à partir de 5 points ou +
     template <typename... Points>
     Conic(Points... points) {
     static_assert(sizeof...(points) >= 5, "Au moins 5 points doivent être fournis.");
 
-    std::vector<Point2P> pointVector = {points...}; // Crée un vecteur à partir des points fournis
+    std::vector<geomproj::Point2D> pointVector = {points...}; // Crée un vecteur à partir des points fournis
 
     Eigen::MatrixXd A(sizeof...(points), 6); // Matrice du système
     A.col(5).setOnes(); // Remplit la dernière colonne de 1
@@ -75,3 +75,4 @@ class Conic
     Eigen::MatrixXd matrix() const; // Renvoi une matrice de la conique
     
 };
+}

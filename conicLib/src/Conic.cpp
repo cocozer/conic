@@ -2,7 +2,7 @@
 
 
 #include "Conic.hpp"
-
+namespace conic {
 Conic::Conic(const double a, const double b, const double c, const double d, const double e, const double f)
 : m_a(a), m_b(b), m_c(c), m_d(d), m_e(e), m_f(f)
 {}
@@ -35,4 +35,5 @@ Eigen::MatrixXd Conic::matrix() const {
     C(2,2) = get_f();
 
     return C; // Renvoi de la matrice de la conique
+}
 }
