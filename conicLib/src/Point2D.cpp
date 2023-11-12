@@ -4,6 +4,10 @@
 #include "Point2D.hpp"
 
 namespace geomproj { 
+Point2D::Point2D() 
+: m_x(0), m_y(0), m_w(0)
+{}
+
 Point2D::Point2D(const double &x, const double &y, const double &w) 
 : m_x(x), m_y(y), m_w(w)
 {}

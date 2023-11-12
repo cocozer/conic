@@ -5,6 +5,10 @@
 
 namespace geomproj { 
 
+Line2D::Line2D()
+: m_a(0), m_b(0), m_c(0)
+{}
+
 Line2D::Line2D(const double &a, const double &b, const double &c)
 : m_a(a), m_b(b), m_c(c)
 {}

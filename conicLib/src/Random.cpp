@@ -2,9 +2,9 @@
 
 namespace randgen { 
 
-    int increment = 0; // L'incrément en variable globale permet de générer des nombres aléatoires et différents même si le programme s'execute en un instant
+    int increment = 0;
 
-    double intGenerator(int min, int max){
+    int numberGenerator(int min, int max){
         increment++; // A chaque génération aléatoire, l'incrément augmente
         // Selection de la graine avec le temps à l'instant présent + l'incrément
         unsigned seed = std::chrono::system_clock::now().time_since_epoch().count()+increment; 
@@ -16,21 +16,15 @@ namespace randgen {
         return distribution(generator);
     }
 
-    float floatGenerator(float min, float max) {
-        increment++;
-        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count()+increment;
-        std::mt19937 generator(seed);
-        std::uniform_real_distribution<float> distribution(min, max);
-        return distribution(generator);
-    }
+    
 
 
     geomproj::Point2D point2DGenerator(){
-        return geomproj::Point2D(intGenerator(-10, 10), intGenerator(-6, 6), 1); // Appel du constructeur de Point2D à partir de 2 coordonnées aléatoires et 1 
+        return geomproj::Point2D(numberGenerator(-10, 10), numberGenerator(-6, 6)); // Appel du constructeur de Point2D à partir de 2 coordonnées aléatoires
     }
 
     geomproj::Point2D idealPoint2DGenerator(){
-        return geomproj::Point2D(intGenerator(-10, 10), intGenerator(-6, 6), 0); // Appel du constructeur de Point2D à partir de 2 coordonnées aléatoires et 0 (infini)
+        return geomproj::Point2D(numberGenerator(-10, 10), numberGenerator(-6, 6), 0); // Appel du constructeur de Point2D à partir de 2 coordonnées aléatoires et 0 (infini)
     }
 
 
@@ -47,4 +41,13 @@ namespace randgen {
         return points;
     }
     
+    conic::Conic conicFromConicPencilGenerator(conic::ConicPencil& myConicPencil) {
+    try {
+        return myConicPencil.get_conic(randgen::numberGenerator(0.0f, static_cast<float>(M_PI)));
+    } catch (const std::exception& e) {
+        std::cerr << "Erreur lors de la génération de la conique : " << e.what() << std::endl;
+        return conic::Conic(); // renvoi d'une conique par défaut s'il y a une erreur
+    }
+}
+
 }

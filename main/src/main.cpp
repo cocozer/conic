@@ -30,27 +30,47 @@ int main()
   // génération d'un point à l'infini
   geomproj::Point2D idealPoint = randgen::idealPoint2DGenerator();
 
+  // Initialisation des coniques 
+  conic::Conic myConic, myConicFrom6Points, myConicFromInf;
   // création des coniques
-
+  try {
   // Conique avec 5 points aléatoires
-  conic::Conic myConic = conic::Conic(points[0], points[1], points[2], points[3], points[4]);
+  myConic = conic::Conic(points[0], points[1], points[2], points[3], points[4]);
 
   //Conique avec 6 points aléatoires
-  conic::Conic myConicFrom6Points = conic::Conic(points[5], points[6], points[7], points[8], points[9], points[10]); // Appel du constructeur de conique avec les 6 points aléatoires
+  myConicFrom6Points = conic::Conic(points[5], points[6], points[7], points[8], points[9], points[10]); // Appel du constructeur de conique avec les 6 points aléatoires
 
   // Conique avec un point à l'infini aléatoire
-  conic::Conic myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
+  myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
   
-  // Faisceau de conique
-  conic::ConicPencil myConicPencil = conic::ConicPencil(myConic, myConicFrom6Points);
+  
+  } catch (const std::exception& e) {
+    std::cerr << "Exception capturée dans la création des coniques : " << e.what() << std::endl;
+  }
 
+  // Initialisation du faisceau de conique
+  conic::ConicPencil myConicPencil;
+  
+  try {
+    myConicPencil = conic::ConicPencil(myConic, myConicFrom6Points); // Création du faisceau de coniques avec deux des coniques déjà créées.
+  } catch (const std::exception& e) {
+    std::cerr << "Exception capturée dans la création du faisceau de coniques : " << e.what() << std::endl;
+  }
+  
+  // Initialisation des coniques du faisceau
+  conic::Conic myConicFromPencil1, myConicFromPencil2, myConicFromPencil3, myConicFromPencil4, myConicFromPencil5;
+
+  try {
   // 5 Coniques à partir du faisceau de coniques
-  conic::Conic myConicFromPencil1 = myConicPencil.get_conic(randgen::floatGenerator(0, M_PI));
-  conic::Conic myConicFromPencil2 = myConicPencil.get_conic(randgen::floatGenerator(0, M_PI));
-  conic::Conic myConicFromPencil3 = myConicPencil.get_conic(randgen::floatGenerator(0, M_PI));
-  conic::Conic myConicFromPencil4 = myConicPencil.get_conic(randgen::floatGenerator(0, M_PI));
-  conic::Conic myConicFromPencil5 = myConicPencil.get_conic(randgen::floatGenerator(0, M_PI));
-
+  myConicFromPencil1 = randgen::conicFromConicPencilGenerator(myConicPencil);
+  myConicFromPencil2 = randgen::conicFromConicPencilGenerator(myConicPencil);
+  myConicFromPencil3 = randgen::conicFromConicPencilGenerator(myConicPencil);
+  myConicFromPencil4 = randgen::conicFromConicPencilGenerator(myConicPencil);
+  myConicFromPencil5 = randgen::conicFromConicPencilGenerator(myConicPencil);
+  } catch (const std::exception& e) {
+    std::cerr << "Exception capturée dans la création des coniques du faisceau : " << e.what() << std::endl;
+  }
+  
   // dessin des points
   Eigen::VectorXd pt1(2), pt2(2), pt3(2), pt4(2), pt5(2), pt6(2), pt7(2), pt8(2), pt9(2), pt10(2), pt11(2), infpt(2);
   pt1 <<  points[0].get_x(),  points[0].get_y();

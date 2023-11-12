@@ -16,6 +16,8 @@ class Point2D
 
     public :
     // Constructeurs et Destructeur
+    Point2D(); // Constructeur par défaut
+
     Point2D(const double &x, const double &y, const double &w); // Constructeur de Point2D à partir de coordonnées Homogènes
 
     Point2D(const double &x, const double &y); // Constructeur de Point2D à partir de coordonnées Euclidiennes

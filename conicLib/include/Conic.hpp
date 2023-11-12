@@ -19,15 +19,20 @@ class Conic
 
     public :
     // Constructeurs et Destructeur
+    Conic(); // Constructeur par défaut
+
     Conic(const double &a, const double &b, const double &c, const double &d, const double &e, const double &f); // Constructeur d'une Conique
 
-    // Conic(const Point2D x1, const Point2D x2, const Point2D x3, const Point2D x4, const Point2D x5); // Constructeur variadics d'une Conique à partir de 5 points ou +
+    // Constructeur variadics d'une Conique à partir de 5 points ou +
     template <typename... Points>
     Conic(Points... points) {
-        static_assert(sizeof...(points) >= 5, "Au moins 5 points doivent être fournis.");
+        if (sizeof...(points) < 5) {
+            throw std::invalid_argument("Au moins 5 points doivent être fournis.");
+        }
 
         std::vector<geomproj::Point2D> pointVector = {points...}; // Crée un vecteur à partir des points fournis
 
+        
         Eigen::MatrixXd A(sizeof...(points), 6); // Matrice du système
         A.col(5).setOnes(); // Remplit la dernière colonne de 1
 
@@ -41,16 +46,21 @@ class Conic
             i++;
         }
 
-        Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeThinU | Eigen::ComputeFullV);
-        Eigen::VectorXd x = svd.matrixV().rightCols(1);
+        try {
+            Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeThinU | Eigen::ComputeFullV);
+            Eigen::VectorXd x = svd.matrixV().rightCols(1);
 
-        set_a(x(0));
-        set_b(x(1));
-        set_c(x(2));
-        set_d(x(3));
-        set_e(x(4));
-        set_f(x(5));
+            set_a(x(0));
+            set_b(x(1));
+            set_c(x(2));
+            set_d(x(3));
+            set_e(x(4));
+            set_f(x(5));
+        } catch (const std::exception& e) {
+            throw std::runtime_error("Erreur lors de la construction de la conique : " + std::string(e.what()));
+        }
     }
+
     Conic(const Eigen::MatrixXd &A); // Constructeur par matrice
 
     Conic(const Conic &c); // Constructeur par copie
@@ -73,7 +83,7 @@ class Conic
 
     // Méthodes
     void display() const; // Affiche les informations de la conique
-    Eigen::MatrixXd matrix() const; // Renvoi une matrice de la conique
+    Eigen::MatrixXd matrix() const; // Renvoie une matrice de la conique
     
 };
 }
