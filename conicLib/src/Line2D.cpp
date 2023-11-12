@@ -5,11 +5,11 @@
 
 namespace geomproj { 
 
-Line2D::Line2D(const double a, const double b, const double c)
+Line2D::Line2D(const double &a, const double &b, const double &c)
 : m_a(a), m_b(b), m_c(c)
 {}
 
-Line2D::Line2D(const Point2D x1, const Point2D x2) 
+Line2D::Line2D(const Point2D &x1, const Point2D &x2) 
 {
     Eigen::Vector3d p1; // Création du vecteur de p1
     p1 << x1.get_x(), x1.get_y(), x1.get_w(); // Assignation de x y et w

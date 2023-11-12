@@ -2,10 +2,24 @@
 
 
 #include "Conic.hpp"
+
 namespace conic {
-Conic::Conic(const double a, const double b, const double c, const double d, const double e, const double f)
+Conic::Conic(const double &a, const double &b, const double &c, const double &d, const double &e, const double &f)
 : m_a(a), m_b(b), m_c(c), m_d(d), m_e(e), m_f(f)
 {}
+
+Conic::Conic(const Eigen::MatrixXd &A){
+
+    // AJOUTER UN ASSERT PR VERIFIER LA TAILLE DE LA MATRICE 3x3 ---------------------------------------------------
+    
+    // En suivant le modèle de matrice d'une conique, on attribue les valeurs a, b, c, d, e et f à la conique
+    set_a(A(0, 0));
+    set_b(A(0, 1)*2);
+    set_c(A(1, 1));
+    set_d(A(0, 2)*2);
+    set_e(A(1, 2)*2);
+    set_f(A(2, 2));
+} 
 
 
 Conic::Conic(const Conic &conic) 

@@ -16,6 +16,14 @@ namespace randgen {
         return distribution(generator);
     }
 
+    float floatGenerator(float min, float max) {
+        increment++;
+        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count()+increment;
+        std::mt19937 generator(seed);
+        std::uniform_real_distribution<float> distribution(min, max);
+        return distribution(generator);
+    }
+
 
     geomproj::Point2D point2DGenerator(){
         return geomproj::Point2D(intGenerator(-10, 10), intGenerator(-6, 6), 1); // Appel du constructeur de Point2D à partir de 2 coordonnées aléatoires et 1 
@@ -38,5 +46,5 @@ namespace randgen {
 
         return points;
     }
-
+    
 }

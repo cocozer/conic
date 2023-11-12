@@ -16,11 +16,11 @@ class Point2D
 
     public :
     // Constructeurs et Destructeur
-    Point2D(const double x, const double y, const double w); // Constructeur de Point2D à partir de coordonnées Homogènes
+    Point2D(const double &x, const double &y, const double &w); // Constructeur de Point2D à partir de coordonnées Homogènes
 
-    Point2D(const double x, const double y); // Constructeur de Point2D à partir de coordonnées Euclidiennes
+    Point2D(const double &x, const double &y); // Constructeur de Point2D à partir de coordonnées Euclidiennes
 
-    Point2D(const Line2D l1, const Line2D l2); // Constructeur de Point2D à partir de l'intersection entre 2 Line2D
+    Point2D(const Line2D &l1, const Line2D &l2); // Constructeur de Point2D à partir de l'intersection entre 2 Line2D
 
     Point2D(const Point2D &p); // Constructeur par copie
 

@@ -4,15 +4,15 @@
 #include "Point2D.hpp"
 
 namespace geomproj { 
-Point2D::Point2D(const double x, const double y, const double w) 
+Point2D::Point2D(const double &x, const double &y, const double &w) 
 : m_x(x), m_y(y), m_w(w)
 {}
 
-Point2D::Point2D(const double x, const double y) 
+Point2D::Point2D(const double &x, const double &y) 
 : m_x(x), m_y(y), m_w(1) // Le point est créé à partir de coordonnées Euclidiennes, w=1
 {}
 
-Point2D::Point2D(const Line2D l1, const Line2D l2) 
+Point2D::Point2D(const Line2D &l1, const Line2D &l2) 
 {
     Eigen::Vector3d d1; // Création du vecteur de la droite d1
     d1 << l1.get_a(), l1.get_b(), l1.get_c();  // Assignation de a, b et c

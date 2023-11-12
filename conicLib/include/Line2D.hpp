@@ -16,9 +16,9 @@ class Line2D
 
     public :
     // Constructeurs et Destructeur
-    Line2D(const double a, const double b, const double c); // Constructeur de Line2D à partir de a, b et c
+    Line2D(const double &a, const double &b, const double &c); // Constructeur de Line2D à partir de a, b et c
 
-    Line2D(const Point2D x1, const Point2D x2); // Constructeur de Line2D à partir de 2 Point2D
+    Line2D(const Point2D &x1, const Point2D &x2); // Constructeur de Line2D à partir de 2 Point2D
 
     Line2D(const Line2D &l); // Constructeur par copie
 
