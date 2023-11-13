@@ -36,8 +36,11 @@ class Point2D
     inline double get_y() const { return m_y; }
     inline double get_w() const { return m_w; }
 
+    Eigen::Vector3d get_vector() const; // Renvoi le vecteur du point
+    Eigen::RowVector3d get_transposed() const { return get_vector().transpose();} // Renvoie le vecteur de la droite
+
     // Méthodes
     void display() const; // Affiche les informations du point
-    
+
 };
 }

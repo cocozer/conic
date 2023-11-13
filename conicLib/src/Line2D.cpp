@@ -32,6 +32,17 @@ Line2D::Line2D(const Line2D &line)
 : m_a(line.m_a), m_b(line.m_b), m_c(line.m_c)
 {}
 
+Eigen::Vector3d Line2D::get_vector() const {
+    Eigen::Vector3d v; // Initialisation d'un vecteur3 puis assigiation des valeurs
+    v(0) = get_a();
+    v(1) = get_b();
+    v(2) = get_c();
+
+    return v; // Renvoi du vecteur de la droite
+}
+
+
+
 void Line2D::display() const {
     std::cout << "Informations de la droite :" << std::endl;
 	std::cout << "a = " << get_a() << std::endl;

@@ -59,6 +59,14 @@ class Conic
         } catch (const std::exception& e) {
             throw std::runtime_error("Erreur lors de la construction de la conique : " + std::string(e.what()));
         }
+
+        // CODE A CHECK ------------------------------------------------------------------------------------Si la conique est générée avec moins de 5 points, vérification que chaque point est bien dans la conique
+        // if (pointVector.size() <= 5) {
+        //     for (const auto& point : pointVector) {
+        //         assert(has(point) && "La conique ne passe pas par un des points fournis.");
+        //     }
+        // }
+        
     }
 
     Conic(const Eigen::MatrixXd &A); // Constructeur par matrice
@@ -83,7 +91,11 @@ class Conic
 
     // Méthodes
     void display() const; // Affiche les informations de la conique
-    Eigen::MatrixXd matrix() const; // Renvoie une matrice de la conique
+    Eigen::MatrixXd get_matrix() const; // Renvoie une matrice de la conique
+    bool has(const geomproj::Point2D &point) const; // Renvoie vrai si le point appartient à la conique
+    bool has(const geomproj::Line2D &line) const; // Renvoie vrai si la doite est une tangente à la conique
     
+    // Surcharge des opérateurs
+    Conic &operator=(const Conic &conic);
 };
 }

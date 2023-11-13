@@ -43,7 +43,7 @@ void Conic::display() const {
     std::cout << "f = " << get_f() << std::endl;
 }
 
-Eigen::MatrixXd Conic::matrix() const {
+Eigen::MatrixXd Conic::get_matrix() const {
     Eigen::MatrixXd C(3,3); // Initialisation d'une matrice 3 3 puis entrée des valeurs dans la matrice
     C(0,0) = get_a();
     C(0,1) = get_b()/2;
@@ -57,4 +57,26 @@ Eigen::MatrixXd Conic::matrix() const {
 
     return C; // Renvoi de la matrice de la conique
 }
+
+bool Conic::has(const geomproj::Point2D &point) const {
+    return (point.get_transposed()*get_matrix()*point.get_vector()==0);
+}
+bool Conic::has(const geomproj::Line2D &line) const {
+    return (line.get_transposed()*get_matrix()*line.get_vector()==0);
+}
+
+// Surcharge des opérateurs 
+
+Conic& Conic::operator=(const Conic &conic) {
+    if (this != &conic) {
+        m_a = conic.m_a;
+        m_b = conic.m_b;
+        m_c = conic.m_c;
+        m_d = conic.m_d;
+        m_e = conic.m_e;
+        m_f = conic.m_f;
+    }
+    return *this;
+}
+
 }

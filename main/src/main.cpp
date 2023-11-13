@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 
 #include <Eigen/Dense>
 
@@ -36,7 +37,7 @@ int main()
   try {
   // Conique avec 5 points aléatoires
   myConic = conic::Conic(points[0], points[1], points[2], points[3], points[4]);
-
+  
   //Conique avec 6 points aléatoires
   myConicFrom6Points = conic::Conic(points[5], points[6], points[7], points[8], points[9], points[10]); // Appel du constructeur de conique avec les 6 points aléatoires
 

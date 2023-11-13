@@ -34,6 +34,16 @@ Point2D::Point2D(const Point2D &point)
 : m_x(point.m_x), m_y(point.m_y), m_w(point.m_w)
 {}
 
+Eigen::Vector3d Point2D::get_vector() const {
+    Eigen::Vector3d v; // Initialisation d'un vecteur3 puis assigiation des valeurs
+    v(0) = get_x();
+    v(1) = get_y();
+    v(2) = get_w();
+
+    return v; // Renvoi du vecteur du point
+}
+
+
 void Point2D::display() const {
     std::cout << "Informations du point :" << std::endl;
 	std::cout << "x = " << get_x() << std::endl;

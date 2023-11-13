@@ -34,6 +34,9 @@ class Line2D
     inline double get_b() const { return m_b; }
     inline double get_c() const { return m_c; }
 
+    Eigen::Vector3d get_vector() const; // Renvoie le vecteur de la droite
+    Eigen::RowVector3d get_transposed() const { return get_vector().transpose();} // Renvoie le vecteur transposé de la droite
+
     // Méthodes
     void display() const; // Affiche les informations de la droite
     

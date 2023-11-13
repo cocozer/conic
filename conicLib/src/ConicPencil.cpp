@@ -28,7 +28,7 @@ namespace conic {
             throw std::invalid_argument("La valeur de var doit être comprise entre 0 et PI.");
         }
         
-        Eigen::MatrixXd C = cos(var) * get_c1().matrix() + sin(var) * get_c2().matrix(); // Calcul de C(var), une conique de paramètre var du faisceau de coniques
+        Eigen::MatrixXd C = cos(var) * get_c1().get_matrix() + sin(var) * get_c2().get_matrix(); // Calcul de C(var), une conique de paramètre var du faisceau de coniques
         return Conic(C); // On retourne un constructeur de conique à partir de la matrice C
     }
 }
