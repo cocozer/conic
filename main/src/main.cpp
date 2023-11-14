@@ -37,14 +37,9 @@ int main()
   try {
   // Conique avec 5 points aléatoires
   myConic = conic::Conic(points[0], points[1], points[2], points[3], points[4]);
-  
   //Conique avec 6 points aléatoires
   myConicFrom6Points = conic::Conic(points[5], points[6], points[7], points[8], points[9], points[10]); // Appel du constructeur de conique avec les 6 points aléatoires
 
-  // Conique avec un point à l'infini aléatoire
-  myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
-  
-  
   } catch (const std::exception& e) {
     std::cerr << "Exception capturée dans la création des coniques : " << e.what() << std::endl;
   }
@@ -111,10 +106,13 @@ int main()
   conic2 << myConicFrom6Points.get_a(), myConicFrom6Points.get_b(), myConicFrom6Points.get_c(), myConicFrom6Points.get_d(), myConicFrom6Points.get_e(), myConicFrom6Points.get_f();
   viewer.push_conic(conic2, 0,0,200);
 
-  // dessin de la conique en verte avec un point à l'infini
-  Eigen::VectorXd conic3(6);
-  conic3 << myConicFromInf.get_a(), myConicFromInf.get_b(), myConicFromInf.get_c(), myConicFromInf.get_d(), myConicFromInf.get_e(), myConicFromInf.get_f();
-  viewer.push_conic(conic3, 0,100,0);
+  // // Conique avec un point à l'infini aléatoire
+  // myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
+
+  // // dessin de la conique en verte avec un point à l'infini
+  // Eigen::VectorXd conic3(6);
+  // conic3 << myConicFromInf.get_a(), myConicFromInf.get_b(), myConicFromInf.get_c(), myConicFromInf.get_d(), myConicFromInf.get_e(), myConicFromInf.get_f();
+  // viewer.push_conic(conic3, 0,100,0);
 
   // dessin des coniques grises du faisceau 
   Eigen::VectorXd conicx(6);

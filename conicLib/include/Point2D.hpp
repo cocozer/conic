@@ -3,6 +3,7 @@
 #include <Eigen/Dense>
 
 #include "Line2D.hpp"
+#include "Constants.hpp"
 
 class Line2D; // Déclaration avancée de la classe Line2D pour pouvoir créer des points à partir d'intersection de droites
 
@@ -37,10 +38,14 @@ class Point2D
     inline double get_w() const { return m_w; }
 
     Eigen::Vector3d get_vector() const; // Renvoi le vecteur du point
-    Eigen::RowVector3d get_transposed() const { return get_vector().transpose();} // Renvoie le vecteur de la droite
+    inline Eigen::RowVector3d get_transposed() const { return get_vector().transpose();} // Renvoie le vecteur de la droite
 
     // Méthodes
-    void display() const; // Affiche les informations du point
+    bool has(const Line2D &line) const; // Renvoie vrai si la droite passe par le point
 
+    void display() const; // Affiche les informations du point
+    
+    //Surcharge des opérateurs 
+    Point2D& operator=(const Point2D &point);
 };
 }

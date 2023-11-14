@@ -5,6 +5,8 @@
 #include <Eigen/Dense>
 
 #include "Point2D.hpp"
+#include "Constants.hpp"
+
 
 namespace conic {
 class Conic
@@ -33,7 +35,7 @@ class Conic
         std::vector<geomproj::Point2D> pointVector = {points...}; // Crée un vecteur à partir des points fournis
 
         
-        Eigen::MatrixXd A(sizeof...(points), 6); // Matrice du système
+        Eigen::MatrixXd A(sizeof...(points), 6); // Initialisation de la matrice du système
         A.col(5).setOnes(); // Remplit la dernière colonne de 1
 
         size_t i = 0;
@@ -60,12 +62,11 @@ class Conic
             throw std::runtime_error("Erreur lors de la construction de la conique : " + std::string(e.what()));
         }
 
-        // CODE A CHECK ------------------------------------------------------------------------------------Si la conique est générée avec moins de 5 points, vérification que chaque point est bien dans la conique
-        // if (pointVector.size() <= 5) {
-        //     for (const auto& point : pointVector) {
-        //         assert(has(point) && "La conique ne passe pas par un des points fournis.");
-        //     }
-        // }
+        if (pointVector.size() == 5) {
+            for (const auto& point : pointVector) {
+                assert(has(point) && "La conique ne passe pas par un des points fournis.");
+            }
+        }
         
     }
 
@@ -96,6 +97,6 @@ class Conic
     bool has(const geomproj::Line2D &line) const; // Renvoie vrai si la doite est une tangente à la conique
     
     // Surcharge des opérateurs
-    Conic &operator=(const Conic &conic);
+    Conic& operator=(const Conic &conic);
 };
 }

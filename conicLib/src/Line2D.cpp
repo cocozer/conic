@@ -41,7 +41,9 @@ Eigen::Vector3d Line2D::get_vector() const {
     return v; // Renvoi du vecteur de la droite
 }
 
-
+bool Line2D::has(const Point2D &point) const {
+    return (std::abs(get_transposed()*point.get_vector())<epsilon);
+}
 
 void Line2D::display() const {
     std::cout << "Informations de la droite :" << std::endl;
@@ -49,4 +51,14 @@ void Line2D::display() const {
     std::cout << "b = " << get_b() << std::endl;
     std::cout << "c = " << get_c() << std::endl;
 }
+
+Line2D& Line2D::operator=(const Line2D &line) {
+        if (this != &line) {
+            m_a = line.m_a;
+            m_b = line.m_b;
+            m_c = line.m_c;
+        }
+        return *this;
+    }
+
 }

@@ -57,13 +57,13 @@ Eigen::MatrixXd Conic::get_matrix() const {
 
     return C; // Renvoi de la matrice de la conique
 }
-
 bool Conic::has(const geomproj::Point2D &point) const {
-    return (point.get_transposed()*get_matrix()*point.get_vector()==0);
+    return (std::abs(point.get_transposed()*get_matrix()*point.get_vector())<epsilon);
 }
 bool Conic::has(const geomproj::Line2D &line) const {
-    return (line.get_transposed()*get_matrix()*line.get_vector()==0);
+    return (std::abs(line.get_transposed()*get_matrix()*line.get_vector())<epsilon);
 }
+
 
 // Surcharge des opérateurs 
 

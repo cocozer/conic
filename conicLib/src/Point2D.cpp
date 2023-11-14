@@ -43,6 +43,10 @@ Eigen::Vector3d Point2D::get_vector() const {
     return v; // Renvoi du vecteur du point
 }
 
+bool Point2D::has(const Line2D &line) const {
+    return (std::abs(get_transposed()*line.get_vector())<epsilon);
+}
+
 
 void Point2D::display() const {
     std::cout << "Informations du point :" << std::endl;
@@ -50,4 +54,14 @@ void Point2D::display() const {
     std::cout << "y = " << get_y() << std::endl;
     std::cout << "w = " << get_w() << std::endl;
 }
+
+Point2D& Point2D::operator=(const Point2D &point) {
+    if (this != &point) {
+        m_x = point.m_x;
+        m_y = point.m_y;
+        m_w = point.m_w;
+    }
+    return *this;
+}
+
 }
