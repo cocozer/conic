@@ -25,5 +25,6 @@ namespace randgen {
     geomproj::Point2D idealPoint2DGenerator(); // Génération aléatoire d'un point idéal dans la géométrie projective
     std::vector<geomproj::Point2D> pointsVectorGenerator(int nbPoints);  // Génération aléatoire de n points rangés dans un vecteur
 
-    conic::Conic conicFromConicPencilGenerator(conic::ConicPencil& myConicPencil); // Génération aléatoire d'une conique du faisceau myConicPencil avec un paramètre aléatoire 
+    conic::Conic conicFromConicPencilGenerator(conic::ConicPencil &myConicPencil); // Génération aléatoire d'une conique du faisceau myConicPencil avec un paramètre aléatoire 
+    std::vector<conic::Conic> conicsFromConicPencilGenerator(conic::ConicPencil &myConicPencil, int numConics); // Génération aléatoire de n conics du faisceau
 }

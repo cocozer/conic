@@ -44,7 +44,7 @@ namespace conic {
 
     Conic ConicPencil::get_conic(const float &var) {
         if (var < 0.0f || var > M_PI) { // Si la valeur aléatoire n'est pas comprise entre 0 et PI, on lance une exception.
-            throw std::invalid_argument("La valeur de var doit être comprise entre 0 et PI.");
+            throw std::invalid_argument("La valeur de var doit être comprise entre 0 et PI. La valeur renseignée était : "+ std::to_string(var));
         }
         
         Eigen::MatrixXd C = cos(var) * get_c1().get_matrix() + sin(var) * get_c2().get_matrix(); // Calcul de C(var), une conique de paramètre var du faisceau de coniques

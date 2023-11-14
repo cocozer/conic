@@ -42,12 +42,25 @@ namespace randgen {
     }
     
     conic::Conic conicFromConicPencilGenerator(conic::ConicPencil& myConicPencil) {
-    try {
-        return myConicPencil.get_conic(randgen::numberGenerator(0.0f, static_cast<float>(M_PI)));
-    } catch (const std::exception& e) {
-        std::cerr << "Erreur lors de la génération de la conique : " << e.what() << std::endl;
-        return conic::Conic(); // renvoi d'une conique par défaut s'il y a une erreur
+        try {
+            return myConicPencil.get_conic(randgen::numberGenerator(0.0f, static_cast<float>(M_PI)));
+        } catch (const std::exception& e) {
+            std::cerr << "Erreur lors de la génération de la conique : " << e.what() << std::endl;
+            return conic::Conic(); // renvoi d'une conique par défaut s'il y a une erreur
+        }
     }
-}
+
+    std::vector<conic::Conic> conicsFromConicPencilGenerator(conic::ConicPencil& myConicPencil, int numConics) {
+        std::vector<conic::Conic> conicsFromPencil;
+        for (int i = 0; i < numConics; i++) {
+            try {
+                conic::Conic randomConic = conicFromConicPencilGenerator(myConicPencil);
+                conicsFromPencil.push_back(randomConic);
+            } catch (const std::exception& e) {
+                std::cerr << "Exception capturée dans la génération des coniques du faisceau : " << e.what() << std::endl;
+            }
+        }
+        return conicsFromPencil;
+    }
 
 }
