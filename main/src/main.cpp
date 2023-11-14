@@ -89,7 +89,12 @@ int main()
   std::vector<Eigen::VectorXd> pointsToDraw = {pt1, pt2, pt3, pt4, pt5, pt6, pt7, pt8, pt9, pt10, pt11}; //vecteur de points à dessiner
   for(size_t i = 0; i<pointsToDraw.size(); i++) {
     pointsToDraw[i] << points[i].get_x(), points[i].get_y(); // Renseignement de la valeur
-    viewer.push_point(pointsToDraw[i], pointsNames[i], 200,0,0); // Dessin des points
+    if(i < 5) {
+      viewer.push_point(pointsToDraw[i], pointsNames[i], 200,0,0); // Dessin des points
+    } else {
+      viewer.push_point(pointsToDraw[i], pointsNames[i], 255,165,0); // Dessin des points
+    }
+    
   }
 
   // La génération d'une conique à partir d'un point à l'infini cause une erreur :
