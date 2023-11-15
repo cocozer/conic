@@ -29,7 +29,7 @@ class Conic
     template <typename... Points>
     Conic(Points... points) {
         if (sizeof...(points) < 5) {
-            throw std::invalid_argument("Au moins 5 points doivent être fournis.");
+            throw std::invalid_argument("Au moins 5 points doivent être fournis pour construire une conique.");
         }
 
         std::vector<geomproj::Point2D> pointVector = {points...}; // Crée un vecteur à partir des points fournis
