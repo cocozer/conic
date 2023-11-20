@@ -25,7 +25,7 @@ class Conic
 
     Conic(const double &a, const double &b, const double &c, const double &d, const double &e, const double &f); // Constructeur d'une Conique
 
-    // Constructeur variadics d'une Conique à partir de 5 points ou +
+    // Constructeur d'une Conique à partir de 5 points ou +
     template <typename... Points>
     Conic(Points... points) {
         if (sizeof...(points) < 5) {

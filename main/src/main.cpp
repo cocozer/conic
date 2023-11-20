@@ -102,8 +102,7 @@ int main()
   // geomproj::Point2D idealPoint = randgen::idealPoint2DGenerator();
 
   // // Conique avec un point à l'infini
-  // conic::Conic myConicFrominf; // Initialisation
-  // myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
+  // conic::Conic myConicFromInf = conic::Conic(points[0], points[1], points[2], points[3], idealPoint); // Appel du constructeur de conique avec les 5 points aléatoires et le dernier à l'infini
 
   // // dessin de la conique en verte avec un point à l'infini
   // Eigen::VectorXd conic3(6);
