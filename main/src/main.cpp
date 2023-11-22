@@ -109,9 +109,6 @@ int main()
   // conic3 << myConicFromInf.get_a(), myConicFromInf.get_b(), myConicFromInf.get_c(), myConicFromInf.get_d(), myConicFromInf.get_e(), myConicFromInf.get_f();
   // viewer.push_conic(conic3, 0,100,0);
 
-  // draw line
-  viewer.push_line(pt1, pt2-pt1,  200,200,0);
-
   // render
   viewer.display(); // on terminal
   viewer.render("output.html");  // generate the output file (to open with your web browser)
